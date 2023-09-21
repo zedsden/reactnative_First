@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, TextInput, Button, StyleSheet } from 'react-native';
+import { View, TextInput, Button,TouchableOpacity, StyleSheet } from 'react-native';
 
 export default function Calculator() {
   const [input, setInput] = useState('0');
@@ -18,39 +18,62 @@ export default function Calculator() {
   };
 
   return (
-    <View style={styles.calculatorContainer}>
-      <View style={styles.inputContainer}>
-        <TextInput
-          style={{ fontSize: 24, textAlign: 'right' }}
-          value={input}
-          editable={false}
-        />
-      </View>
-      <View style={{ flexDirection: 'row' }}>
-        <Button title="1" onPress={() => handleButtonClick('1')} />
-        <Button title="2" onPress={() => handleButtonClick('2')} />
-        <Button title="3" onPress={() => handleButtonClick('3')} />
-      </View>
-      <View style={{ flexDirection: 'row' }}>
-        <Button title="+" onPress={() => handleButtonClick('+')} />
-        <Button title="=" onPress={handleEqualClick} />
-      </View>
-    </View>
-  );
-}
+  <View style={styles.container}>
+  
+      <TextInput 
+        value={input}
+        editable={false} 
+        style={styles.textinput}
 
-const styles = StyleSheet.create({
-  calculatorContainer: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#f0f0f0', // Background color for the calculator container
-    padding: 20, // Add some padding for spacing
+      />
+      <TouchableOpacity>
+        <Button title="1" onPress={() => handleButtonClick('1')}  />
+        <Button title="2" onPress={() => handleButtonClick('2')}  />
+        <Button title="3" onPress={() => handleButtonClick('3')} style={styles.coreButtons} />
+      </TouchableOpacity>
+      <TouchableOpacity>
+        <Button title="+" onPress={() => handleButtonClick('+')}style={styles.coreButtons} />
+        <Button title="=" onPress={handleEqualClick} style={styles.coreButtons} />
+      </TouchableOpacity>
+   </View>
+    
+  );
+ 
+  
+}
+ const styles = StyleSheet.create({
+  
+  container: {
+    backgroundColor: 'light',
+    padding: 8,
+    borderWidth:2,
+    marginTop:50,
+    borderRadius:5
   },
-  inputContainer: {
-    backgroundColor: 'white', // Background color for the input container
-    borderRadius: 8, // Add rounded corners to the input container
-    padding: 10, // Add some padding to the input container
-    marginBottom: 10, // Add margin to separate it from the buttons
+  textinput: {
+    height: 40,
+    backgroundColor:'white',
+    borderWidth:2,
+    marginBottom:5
   },
-});
+  coreButtons: {
+    marginTop:2,
+    marginBottom:2,
+    backgroundColor:'gray',
+    width:40,
+    height:20,
+    borderRadius:2,
+    textAlign:'center',
+    display: 'flex',
+    flexDirection :'column',
+    justifyContent : 'space-evenly'
+
+  },
+//   buttons: {
+//     display: 'flex',
+//     flexDirection :'row',
+//     justifyContent : 'space-evenly'
+//   }
+
+  
+  });
