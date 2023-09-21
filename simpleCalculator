@@ -1,0 +1,56 @@
+import React, { useState } from 'react';
+import { View, TextInput, Button, StyleSheet } from 'react-native';
+
+export default function Calculator() {
+  const [input, setInput] = useState('0');
+
+  const handleButtonClick = (value) => {
+    setInput((prevInput) => (prevInput === '0' ? value : prevInput + value));
+  };
+
+  const handleEqualClick = () => {
+    try {
+      const result = eval(input);
+      setInput(result.toString());
+    } catch (error) {
+      setInput('Error');
+    }
+  };
+
+  return (
+    <View style={styles.calculatorContainer}>
+      <View style={styles.inputContainer}>
+        <TextInput
+          style={{ fontSize: 24, textAlign: 'right' }}
+          value={input}
+          editable={false}
+        />
+      </View>
+      <View style={{ flexDirection: 'row' }}>
+        <Button title="1" onPress={() => handleButtonClick('1')} />
+        <Button title="2" onPress={() => handleButtonClick('2')} />
+        <Button title="3" onPress={() => handleButtonClick('3')} />
+      </View>
+      <View style={{ flexDirection: 'row' }}>
+        <Button title="+" onPress={() => handleButtonClick('+')} />
+        <Button title="=" onPress={handleEqualClick} />
+      </View>
+    </View>
+  );
+}
+
+const styles = StyleSheet.create({
+  calculatorContainer: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: '#f0f0f0', // Background color for the calculator container
+    padding: 20, // Add some padding for spacing
+  },
+  inputContainer: {
+    backgroundColor: 'white', // Background color for the input container
+    borderRadius: 8, // Add rounded corners to the input container
+    padding: 10, // Add some padding to the input container
+    marginBottom: 10, // Add margin to separate it from the buttons
+  },
+});
