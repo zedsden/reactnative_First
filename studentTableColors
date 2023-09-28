@@ -1,0 +1,95 @@
+import React from 'react';
+import { View, Text, StyleSheet } from 'react-native';
+
+const Table = () => {
+  const renderCell = (value, isBold, isBlue, isItalic) => {
+    const cellStyle = [
+      styles.cell,
+      isBold && styles.bold,
+      isBlue && styles.blue,
+      isItalic && styles.italic,
+    ];
+
+    return (
+      <Text style={cellStyle}>
+        {value}
+      </Text>
+    );
+  };
+
+  return (
+    <View style={styles.container}>
+      <View style={styles.row}>
+        {renderCell('ID')}
+        {renderCell('Name')}
+        {renderCell('CGPA')}
+      </View>
+      <View style={styles.row}>
+        {renderCell('1', false, true, false)}
+        {renderCell('Javed', false, true, false )} {/* CGPA > 3.7 */}
+        {renderCell('3.0', false, true, false)}   {/* 2 <= CGPA < 3 */}
+      </View>
+      <View style={styles.row}>
+        {renderCell('2',true, false, false)}
+        {renderCell('Nouman', true, false, false)} {/* CGPA > 3.7 */}
+        {renderCell('2.7', true, false, false)}  {/* 2 <= CGPA < 3 */}
+      </View>
+      <View style={styles.row}>
+        {renderCell('3', true, true, true)}
+        {renderCell('Ali', true, true, true)}  {/* CGPA >= 3.7 */}
+        {renderCell('3.7', true, true, true)}  {/* 3 <= CGPA < 3.7 */}
+      </View>
+      <View style={styles.row}>
+        {renderCell('4', false, true, false)}
+        {renderCell('Faisal', false, true, false)}  {/* CGPA >= 3.7 */}
+        {renderCell('3.3', false, true, false)}  {/* 3 <= CGPA < 3.7 */}
+      </View>
+      <View style={styles.row}>
+        {renderCell('5', true, true, true)}
+        {renderCell('Shahid', true, true, true)}  {/* CGPA >= 3.7 */}
+        {renderCell('4.0', true, true, true)}  {/* 3 <= CGPA < 3.7 */}
+      </View>
+      <View style={styles.row}>
+        {renderCell('6', false, true, false)}
+        {renderCell('Kamal', false, true, false)}  {/* CGPA >= 3.7 */}
+        {renderCell('3.1', false, true, false)}  {/* 3 <= CGPA < 3.7 */}
+      </View>
+      <View style={styles.row}>
+        {renderCell('7', true, false, false)}
+        {renderCell('Zahid', true, false, false)}  {/* CGPA < 3 */}
+        {renderCell('2.3', true, false, false)}  {/* 2 <= CGPA < 3 */}
+      </View>
+    </View>
+  );
+};
+
+const styles = StyleSheet.create({
+  container: {
+    borderWidth: 1,
+    borderColor: 'black',
+    marginBottom: 10,
+  },
+  row: {
+    flexDirection: 'row',
+  },
+  cell: {
+    flex: 1,
+    borderWidth: 1,
+    borderColor: 'black',
+    padding: 10,
+  },
+  bold: {
+    fontWeight: 'bold',
+    color: 'red',
+  },
+  blue: {
+    color: 'blue',
+  },
+  italic: {
+    fontStyle: 'italic',
+    fontWeight: 'bold',
+    color: 'green',
+  },
+});
+
+export default Table;
